@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Meu Amor ❤️</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Fonte elegante do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Container de Partículas (Corações, Estrelas, Pétalas) -->
+    <div id="particles-container"></div>
+    <canvas id="fireworks-canvas" class="hidden"></canvas>
+
+    <!-- Botão de Música Fixo -->
+    <button id="music-toggle" class="hidden">🎵 Pause</button>
+    <audio id="bg-music" loop>
+        <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <!-- Tela 1: Loading -->
+    <div id="loading-screen" class="screen">
+        <div class="loader"></div>
+        <p>Preparando algo especial...</p>
+    </div>
+
+    <!-- Tela 2: Entrada -->
+    <div id="intro-screen" class="screen hidden">
+        <h1 class="gold-text">Feliz Aniversário,<br>Meu Amor ❤️</h1>
+        <!-- Substitua pelo nome dela(e) se desejar -->
+        <h2 class="sub-name">Biaa</h2> 
+        <button id="start-btn" class="gold-btn">Começar nossa história</button>
+    </div>
+
+    <!-- Tela 3: Conteúdo Principal (Carta, Galeria, Contador) -->
+    <div id="main-screen" class="screen hidden scrollable">
+        
+        <!-- Carta -->
+        <section class="glass-panel letter-section">
+            <div class="paper">
+                <p id="typewriter-text"></p>
+            </div>
+        </section>
+
+        <!-- Galeria / Carrossel -->
+        <section class="glass-panel gallery-section hidden" id="gallery-section">
+            <h3 class="gold-text">Eu te amoo muitooo</h3>
+            <div class="carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- As imagens são injetadas pelo Flask -->
+                    {% for image in images %}
+                        <img src="{{ url_for('static', filename='images/' + image) }}" class="carousel-slide" alt="Nossa Foto">
+                    {% else %}
+                        <p style="text-align: center; color: white;">Coloque fotos na pasta static/images/</p>
+                    {% endfor %}
+                </div>
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Contador -->
+        <section class="glass-panel counter-section hidden" id="counter-section">
+            <h3 class="gold-text">Cada segundo ao seu lado vale a pena</h3>
+            <div id="countdown" class="counter-box">
+                <div class="time"><span id="days">0</span> Dias</div>
+                <div class="time"><span id="hours">0</span> Horas</div>
+                <div class="time"><span id="minutes">0</span> Min.</div>
+                <div class="time"><span id="seconds">0</span> Seg.</div>
+            </div>
+        </section>
+
+        <!-- Botão Especial -->
+        <div class="special-btn-container hidden" id="special-btn-container">
+            <button id="special-btn" class="gold-btn pulse-btn">Tenho uma última surpresa ❤️</button>
+        </div>
+    </div>
+
+ <!-- Surpresa Final -->
+<div id="final-screen" class="hidden">
+    <canvas id="fireworks-canvas" class="hidden"></canvas>
+    
+    <div class="modal-content">
+        <h2 class="final-text hidden">Nosso caminho 💖</h2>
+        <p class="final-text hidden">Em cada detalhe, em cada gesto e em cada dia, a certeza de que escolhi a pessoa certa só se fortalece. Agradeço por caminharmos juntos e por tudo o que construímos até aqui.</p>
+        <p class="final-text hidden" style="font-style: italic; font-size: 1rem; color: #d4af37; margin: 20px 0;">
+            "Acima de tudo, porém, revistam-se do amor, que é o elo perfeito." <br> (Colossenses 3:14)
+        </p>
+        <button id="close-modal" class="credits-btn hidden">Eu também te amo!</button>
+    </div>
+</div>
+
+    <!-- Botão de Créditos / Assinatura -->
+    <div class="credits-footer">
+        <button class="credits-btn">Criado by Uriel ✨</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+</body>
+</html>

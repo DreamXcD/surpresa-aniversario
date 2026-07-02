@@ -1,0 +1,13 @@
+surpresa_romantica/
+│
+├── app.py
+├── templates/
+│   └── index.html
+└── static/
+    ├── style.css
+    ├── script.js
+    ├── music.mp3
+    └── images/
+        ├── foto1.jpg
+        ├── foto2.jpg
+        └── foto3.jpg
