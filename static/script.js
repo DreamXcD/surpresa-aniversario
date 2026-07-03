@@ -1,9 +1,10 @@
 // ================= CONFIGURAÇÕES =================
-// Data do início do relacionamento ou data que deseja contar
-const START_DATE = new Date("2025-08-06T00:00:00").getTime(); 
+// Data do início da amizade ou data especial para vocês (Ano-Mês-Dia)
+const START_DATE = new Date("2023-06-27T00:00:00").getTime(); 
 
-// Texto da Carta
-const letterContent = `Meu amor,\n\nHoje o mundo inteiro deveria parar para celebrar, porque é o dia em que nasceu a pessoa mais incrível, generosa e linda que eu já conheci. Desde aquele mês de agosto de 2025, quando os nossos caminhos finalmente se cruzaram, a minha vida ganhou um sentido completamente novo. Eu descobri que o amor verdadeiro não é aquele que a gente idealiza nos livros, mas aquele que a gente constrói no dia a dia, nos sorrisos partilhados, nos abraços apertados e na certeza de ter encontrado o nosso lugar no mundo.\n\nSabe, antes de você chegar, meus dias seguiam um ritmo comum. Mas com você, cada detalhe ganhou uma nova intensidade, uma cor mais viva e um brilho que eu nunca imaginei encontrar. O som da sua risada virou a minha melodia favorita, o seu olhar se tornou o meu ponto de paz no meio de qualquer tempestade, e o aconchego do seu abraço virou o único refúgio onde eu sinto que nada de ruim pode me alcançar. Você tem essa capacidade mágica de transformar os momentos mais simples em memórias inesquecíveis.\n\nQuero aproveitar este dia tão único para te agradecer por ser exatamente quem você é. Obrigado por sua paciência, pelo seu apoio incondicional e por me incentivar a ser alguém melhor a cada dia. Obrigado por me ensinar o verdadeiro significado de cumplicidade e por me dar o privilégio de caminhar de mãos dadas com alguém tão especial. Este pequeno espaço digital é apenas uma tentativa singela de colocar em palavras um sentimento que transborda e que mal cabe no meu peito.\n\nOlho para tudo o que já vivemos até aqui e meu coração se enche de orgulho e gratidão. Mas, acima de tudo, olho para o futuro com uma certeza inabalável: eu quero passar cada próximo capítulo da minha vida ao seu lado. Quero estar aqui para te ver realizar todos os seus sonhos, para segurar a sua mão quando você precisar de força e para comemorar cada um dos seus aniversários, ano após ano, lembrando você do tamanho do meu amor.\n\nQue o seu novo ciclo seja repleto de luz, saúde, conquistas e de momentos felizes, de preferência, todos vividos bem pertinho de mim. Você merece o mundo inteiro, meu amor, mas saiba que o meu mundo já é completamente seu.\n\nFeliz aniversário, minha vida, meu porto seguro e meu eterno amor. Eu te amo infinitamente. ❤️`;
+// Texto da Carta (Surpresa de Amizade para a Dafne)
+const letterContent = `Querida Dafne,\n\nVocê provavelmente não estava esperando por isso hoje, mas eu achei que um dia comum era o momento perfeito para fazer uma surpresa e te lembrar do quanto a sua amizade é especial para mim.\n\nDesde que os nossos caminhos se cruzaram, minha vida ganhou muito mais risadas, conversas aleatórias maravilhosas e aquela leveza que só uma conexão verdadeira consegue trazer. Sabe, ter você como amiga é ter a certeza de que nunca falta assunto, apoio ou um conselho sincero quando preciso.\n\nVocê tem esse dom único de deixar qualquer ambiente mais leve e de transformar momentos simples em histórias incríveis para lembrar depois. O mundo é um lugar muito melhor, mais divertido e iluminado com você por perto!\n\nFiz esse pequeno espaço digital só para te agradecer pela parceria de sempre, pela sua paciência e por ser exatamente quem você é: autêntica, generosa e uma amiga nota mil. Olho para tudo o que já compartilhamos e só sinto gratidão por ter você na minha vida.\n\nQue a gente continue colecionando boas memórias, risadas e conquistas por muito tempo. Obrigado por tudo, Dafne! Você é incrível! ✨💛`;
+
 // ================= ESTADOS =================
 let musicPlaying = false;
 const bgMusic = document.getElementById("bg-music");
@@ -31,8 +32,8 @@ document.getElementById("start-btn").addEventListener("click", () => {
     const mainScreen = document.getElementById("main-screen");
     mainScreen.classList.remove("hidden");
     
-    // Iniciar efeitos e fluxos
-    startBackgroundParticles('heart');
+    // Iniciar efeitos visuais de amizade
+    startBackgroundParticles('friendship');
     typeWriterEffect();
 });
 
@@ -55,7 +56,7 @@ function typeWriterEffect() {
     if (i < letterContent.length) {
         textContainer.innerHTML += letterContent.charAt(i) === '\n' ? '<br>' : letterContent.charAt(i);
         i++;
-        setTimeout(typeWriterEffect, 50); // Velocidade da digitação
+        setTimeout(typeWriterEffect, 40); // Velocidade de digitação fluida
     } else {
         // Quando terminar a carta, mostra a galeria e o contador
         setTimeout(() => {
@@ -72,7 +73,7 @@ function typeWriterEffect() {
 
 // ================= CARROSSEL DE IMAGENS =================
 let slideIndex = 0;
-let autoSlideInterval = setInterval(() => moveSlide(1), 3000); // Passa a cada 3s
+let autoSlideInterval = setInterval(() => moveSlide(1), 3000);
 
 function moveSlide(n) {
     const track = document.getElementById("carousel-track");
@@ -87,7 +88,6 @@ function moveSlide(n) {
     
     track.style.transform = `translateX(-${slideIndex * 100}%)`;
     
-    // Reinicia o timer manual se o usuário clicar
     clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => moveSlide(1), 3000);
 }
@@ -113,11 +113,11 @@ document.getElementById("special-btn").addEventListener("click", () => {
     document.getElementById("main-screen").classList.add("hidden");
     document.getElementById("final-screen").classList.remove("hidden");
     
-    // Inicia Fogos de Artifício (Canvas)
+    // Inicia Fogos de Artifício
     startFireworks();
     
-    // Troca partículas para Pétalas
-    startBackgroundParticles('petal');
+    // Troca partículas para Estrelas/Brilhos de Celebração
+    startBackgroundParticles('celebration');
 
     // Revela mensagens gradualmente
     const lines = document.querySelectorAll(".final-text");
@@ -125,15 +125,13 @@ document.getElementById("special-btn").addEventListener("click", () => {
         setTimeout(() => {
             line.classList.remove("hidden");
             line.style.opacity = 1;
-        }, index * 2500); // 2.5s entre cada frase
+        }, index * 2500);
     });
 
-   // 131: Revela o botão do WhatsApp
-// 132: 
     setTimeout(() => {
-        const btn = document.getElementById("close-modal"); // 133
-        if (btn) { // 134
-            btn.classList.remove("hidden"); // 135
+        const btn = document.getElementById("close-modal");
+        if (btn) {
+            btn.classList.remove("hidden");
         }
     }, lines.length * 2500 + 1000);
 });
@@ -143,31 +141,34 @@ let particleInterval;
 function startBackgroundParticles(type) {
     clearInterval(particleInterval);
     const container = document.getElementById("particles-container");
-    container.innerHTML = ''; // Limpa os antigos
+    container.innerHTML = ''; 
     
     particleInterval = setInterval(() => {
         const p = document.createElement("div");
         p.classList.add("particle", type);
         
+        // Efeitos visuais adaptados para surpresa de amizade
         if(type === 'star') p.innerHTML = '✦';
-        if(type === 'heart') p.innerHTML = '❤️';
+        if(type === 'friendship') p.innerHTML = '✨';
+        if(type === 'celebration') {
+            const emojis = ['✨', '💛', '🌟', '🚀'];
+            p.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        }
         
-        // Posição e duração aleatórias
         p.style.left = Math.random() * 100 + "vw";
         p.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        p.style.fontSize = (Math.random() * 15 + 10) + "px";
+        p.style.fontSize = (Math.random() * 15 + 12) + "px";
         
         container.appendChild(p);
         
-        // Remove após a animação
         setTimeout(() => p.remove(), 6000);
-    }, type === 'petal' ? 150 : 300); // Pétalas caem mais rápido
+    }, type === 'celebration' ? 180 : 300);
 }
 
 // ================= FOGOS DE ARTIFÍCIO (CANVAS PURO) =================
 function startFireworks() {
     const canvas = document.getElementById("fireworks-canvas");
-    if (!canvas) return; // Segurança caso o canvas não exista
+    if (!canvas) return; 
     
     canvas.classList.remove("hidden");
     const ctx = canvas.getContext("2d");
@@ -175,14 +176,15 @@ function startFireworks() {
     canvas.height = window.innerHeight;
 
     let particles = [];
-    const colors = ['#FFD700', '#ff4d4d', '#ffffff', '#ffb3b3'];
+    // Paleta de cores moderna e vibrante
+    const colors = ['#00FFFF', '#FFD700', '#9933FF', '#00FF66', '#FF9900'];
 
     function createExplosion(x, y) {
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 60; i++) {
             particles.push({
                 x: x, y: y,
-                vx: (Math.random() - 0.5) * 10,
-                vy: (Math.random() - 0.5) * 10,
+                vx: (Math.random() - 0.5) * 12,
+                vy: (Math.random() - 0.5) * 12,
                 life: 1,
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
@@ -200,15 +202,15 @@ function startFireworks() {
             p.life -= 0.02;
             
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(${hexToRgb(p.color)}, ${p.life})`;
             ctx.fill();
 
             if (p.life <= 0) particles.splice(index, 1);
         });
 
-        if(Math.random() < 0.05) {
-            createExplosion(Math.random() * canvas.width, Math.random() * (canvas.height/2));
+        if(Math.random() < 0.06) {
+            createExplosion(Math.random() * canvas.width, Math.random() * (canvas.height / 2));
         }
         requestAnimationFrame(animateFireworks);
     }
@@ -227,7 +229,7 @@ const btnWhatsApp = document.getElementById('close-modal');
 if (btnWhatsApp) {
     btnWhatsApp.addEventListener('click', () => {
         const seuNumero = "5527992373337"; 
-        const mensagem = "Meu amor, eu também te amo infinitamente! ❤️";
+        const mensagem = "Oii! Amei a surpresa do site! Você é incrível, muito obrigada pela amizade! ✨💛";
         const url = `https://wa.me/${seuNumero}?text=${encodeURIComponent(mensagem)}`;
         
         window.open(url, '_blank');
